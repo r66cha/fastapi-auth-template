@@ -1,16 +1,23 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from src.core.schemas import DB_URL_Schema
-from enum import Enum
 
 
-class DatabaseDialect(BaseSettings):
-    postgres_asyncpg = "postgres+asynchpg"
+class DB_URL(BaseSettings):
+    DB_HOST: str
+    DB_PORT: int
+    DB_USER: str
+    DB_PASSWORD: str
+    DB_NAME: str
 
+    dialect: str = "postgres+asynchpg"
 
-class DB_URL(BaseSettings, DB_URL_Schema, DatabaseDialect):
+    model_config = SettingsConfigDict(
+        env_file=".env.template",
+        extra="ignore",
+    )
+
     @property
     def get_DB_URL(self) -> str:
-        return f"{self.postgres_asyncpg}://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}"
+        return f"{self.dialect}://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}"
 
 
 db_url = DB_URL()

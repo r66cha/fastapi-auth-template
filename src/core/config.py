@@ -17,7 +17,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         case_sensitive=False,
-        env_file=(BASE_DIR / ".env"),
+        env_file=(BASE_DIR / ".env.template"),  # override in .env
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__",
     )

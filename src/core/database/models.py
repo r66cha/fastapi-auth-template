@@ -1,7 +1,7 @@
 from fastapi_users.db import SQLAlchemyBaseOAuthAccountTable, SQLAlchemyUserDatabase
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import DeclarativeBase
 from fastapi_users_db_sqlalchemy.access_token import (
     SQLAlchemyAccessTokenDatabase,
@@ -12,16 +12,6 @@ from src.core.database.mixin import IdIntPkMixin
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
-
-
-IntPK = Annotated[
-    int,
-    mapped_column(
-        Integer,
-        ForeignKey("user.id", ondelete="cascade"),
-        nullable=False,
-    ),
-]
 
 
 class Base(DeclarativeBase):
@@ -41,7 +31,13 @@ class AccessToken(Base, SQLAlchemyBaseAccessTokenTable[int]):
 
     __tablename__ = "accesstokens"
 
-    user_id: IntPK
+    user_id: Mapped[int] = (
+        mapped_column(
+            Integer,
+            ForeignKey("users.id", ondelete="cascade"),
+            nullable=False,
+        ),
+    )
 
     @classmethod
     def get_db(cls, session: "AsyncSession"):

@@ -1,6 +1,6 @@
 from src.core.config import settings
-from src.core.settings._0_gunicorn.gunicorn_app_options import get_app_options
-from src.core.settings._0_gunicorn.gunicorn_app import Application
+from core.settings.gunicorn_conf import get_app_options
+from core.settings.gunicorn_conf import Application
 from src.api import app
 
 
