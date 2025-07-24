@@ -1,7 +1,7 @@
 from fastapi import Depends
 from typing import Annotated, TYPE_CHECKING
 
-from core.database.manager import db_manager
+from src.core.database.manager import db_manager
 from src.core.database.models import AccessToken
 
 if TYPE_CHECKING:

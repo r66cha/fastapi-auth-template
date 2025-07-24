@@ -1,7 +1,7 @@
 from fastapi import Depends
 from typing import TYPE_CHECKING, Annotated
 
-from core.database.manager import db_manager
+from src.core.database.manager import db_manager
 from src.core.database.models import User
 
 if TYPE_CHECKING:

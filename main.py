@@ -1,7 +1,7 @@
 from src.core.config import settings
-from core.settings.gunicorn_conf import get_app_options
-from core.settings.gunicorn_conf import Application
-from src.api import app
+from src.core.settings.gunicorn_conf import get_app_options
+from src.core.settings.gunicorn_conf import Application
+from src.api.app import app
 
 
 def main():
