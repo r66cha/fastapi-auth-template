@@ -1,3 +1,7 @@
+"""Application configuration module."""
+
+# -- Imports
+
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from src.core.schemas import (
@@ -10,10 +14,14 @@ from src.core.schemas import (
 )
 
 
+# --
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Settings(BaseSettings):
+    """Main application settings."""
 
     model_config = SettingsConfigDict(
         case_sensitive=False,
