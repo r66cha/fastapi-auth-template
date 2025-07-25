@@ -4,8 +4,12 @@ Module containing mixins for SQLAlchemy ORM models.
 These mixins are designed to extend database models with common fields and behaviors.
 """
 
-# SQLAlchemy imports for asynchronous DATABASE work
+# -- Imports
+
 from sqlalchemy.orm import Mapped, mapped_column
+
+
+# --
 
 
 class IdIntPkMixin:

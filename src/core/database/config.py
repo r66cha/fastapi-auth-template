@@ -4,8 +4,12 @@ Configuration module for the database connection.
 Defines a Pydantic settings class that constructs a full async SQLAlchemy-compatible database URL.
 """
 
-# Importing BaseSettings for typed environment-based configuration
+# -- Imports
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+# --
 
 
 class DB_URL(BaseSettings):

@@ -7,27 +7,21 @@ This module defines the ORM models required for authentication and user handling
 - `AccessToken`: Model for storing access tokens (used in DB strategy).
 """
 
-# Imports from the fastapi-users library for working with users and tokens
+# -- Imports
+
 from fastapi_users.db import SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from fastapi_users_db_sqlalchemy.access_token import (
     SQLAlchemyAccessTokenDatabase,
     SQLAlchemyBaseAccessTokenTable,
 )
-
-# SQLAlchemy imports for asynchronous DATABASE work
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import AsyncSession
-
-# Imports from the standard library
-from typing import TYPE_CHECKING, Annotated
-
-# Internal project mixin for adding an id field
+from typing import TYPE_CHECKING
 from src.core.database.mixin import IdIntPkMixin
 
-# Import for type annotation inside a conditional block
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 

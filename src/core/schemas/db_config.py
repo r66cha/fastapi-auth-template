@@ -1,8 +1,17 @@
+"""Database configuration schema"""
+
+# -- Imports
+
 from pydantic import BaseModel, PostgresDsn
 from src.core.database.config import db_url
 
 
+# --
+
+
 class DatabaseConfigSchema(BaseModel):
+    """Configuration schema for the database connection and SQLAlchemy engine."""
+
     url: PostgresDsn = db_url.get_DB_URL
     echo: bool = False
     echo_pool: bool = False

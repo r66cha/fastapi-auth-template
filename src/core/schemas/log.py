@@ -1,6 +1,13 @@
+"""Logging configuration schema"""
+
+# -- Imports
+
 import logging
 from typing import Literal
 from pydantic import BaseModel
+
+
+# --
 
 
 LOG_DEFAULT_FORMAT = (
@@ -9,6 +16,8 @@ LOG_DEFAULT_FORMAT = (
 
 
 class LoggingConfigSchema(BaseModel):
+    """Schema for configuring logging level and format."""
+
     log_level: Literal[
         "debug",
         "info",
@@ -20,4 +29,6 @@ class LoggingConfigSchema(BaseModel):
 
     @property
     def log_level_value(self) -> int:
+        """Converts string log level to corresponding numeric constant."""
+
         return logging.getLevelNamesMapping()[self.log_level.upper()]

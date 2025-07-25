@@ -1,3 +1,7 @@
+"""Dependencies module"""
+
+# -- Imports
+
 from .token_strategy_db_dep import get_database_strategy
 from .token_db_dep import get_access_token_db
 from .user_db_dep import get_user_db

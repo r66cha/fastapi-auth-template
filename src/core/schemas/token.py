@@ -1,4 +1,11 @@
+"""Schema defining configuration settings for access tokens."""
+
+# -- Imports
+
 from pydantic import BaseModel
+
+
+# --
 
 
 class AccessTokenSchema(BaseModel):

@@ -1,3 +1,7 @@
+"""Schemas module"""
+
+# -- Imports
+
 from .api import ApiSchema
 from .db_config import DatabaseConfigSchema
 from .log import LoggingConfigSchema

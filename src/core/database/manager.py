@@ -7,19 +7,19 @@ It provides:
 - `db_manager`: A default instance initialized from the project config.
 """
 
-# SQLAlchemy imports for asynchronous DATABASE work
+# -- Imports
+
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     AsyncEngine,
     async_sessionmaker,
     create_async_engine,
 )
-
-# Used for annotating async generator return types
 from collections.abc import AsyncGenerator
-
-# database url import
 from .config import db_url
+
+
+# --
 
 
 class DatabaseManager:

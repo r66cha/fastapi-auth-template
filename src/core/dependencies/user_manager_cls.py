@@ -1,13 +1,27 @@
+"""
+Custom user manager using FastAPI Users.
+
+This module defines a user manager that handles user-related events such as:
+- Registration
+- Email verification
+- Password reset
+
+It uses secrets from the application settings for token generation.
+"""
+
+# -- Imports
+
 from typing import Optional, TYPE_CHECKING
-
 from fastapi_users import BaseUserManager, IntegerIDMixin
-
 from src.core.database.models import User
 from src.core.settings.log_conf import log
 from src.core.config import settings
 
 if TYPE_CHECKING:
     from fastapi import Request
+
+
+# --
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
@@ -19,7 +33,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         user: User,
         request: Optional["Request"] = None,
     ):
-        "After user registration func"
+        "Called after a user is successfully registered."
 
         log.info(f"User: {user.id} was registered")
 
@@ -29,7 +43,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         token: str,
         request: Optional["Request"] = None,
     ):
-        "After user request verification func"
+        "Called after a user requests email verification."
 
         log.info(f"Verification request from:\n\tUser: {user.id}\n\tToken: {token}")
 
@@ -39,6 +53,6 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         token: str,
         request: Optional["Request"] = None,
     ):
-        "After user forgot password func"
+        "Called after a user initiates a password reset."
 
         log.info(f"User {user.id} has forgot their password. Reset token: {token}")
