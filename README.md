@@ -46,24 +46,24 @@ cd fastapi-auth-template
 
 ### 2. Install uv package manager
 
-- make install-uv
+`make install-uv`
 
 ### 3. Install project dependencies
 
-- make install-req
+`make install-req`
 
 ### 4. Apply database migrations
 
-- make alembic-upgrade
+`make alembic-upgrade`
 
 ### 5. (Optional) Create initial superuser
 
-- make superuser
+`make superuser`
 
 ### 6. Run the project
 
-- make run
-- make urn
+`make run`
+`make urn`
 
 ### 7. Swagger docs available at:
 
@@ -73,7 +73,7 @@ cd fastapi-auth-template
 
 ## License
 
-MIT License.
+No License.
 
 ## Author
 
