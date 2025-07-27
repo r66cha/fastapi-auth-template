@@ -6,28 +6,30 @@ A universal FastAPI authorization template based on the core of the **FastAPI Us
 - **JWT** — storing access tokens in memory (without database)
 - **Database (DB)** — storing access tokens in a database with the possibility of revocation
 
-### Transports:
-- **Bearer** — header `Authorization: Bearer <token>`
-- **Cookies** — secure `HttpOnly` cookies for frontend
-- **OAuth2** (under development) — integration with Google, Yandex and other providers
+### Token transport methods:
+- **Bearer** — token passed in `Authorization: Bearer <token>` header
+- **Cookies** — secure `HttpOnly` cookies for frontend token storage
+
+### Protocol integrations (under development):
+- **OAuth2 / OpenID Connect** — external provider authentication (Google, Yandex, etc.)
 
 ### Main components:
 - `fastapi-users` — user management core
-- `sqlalchemy` — ORM model of users and tokens
+- `sqlalchemy` — ORM models for users and tokens
 - `alembic` — database schema migrations
-- Extensible classes `User` and `AccessToken`
-- Asynchronous `UserManager' with custom logic
+- Extensible classes `User`, `AccessToken` and `RefreshToken`
+- Asynchronous `UserManager` with custom logic
 
 ### Features:
-- Registration, Login (entry), Logout (exit)
+- Registration, login, logout
 - Email verification
-- Reset password
-- Working with `access` and `refresh` tokens
+- Password reset
+- Handling `access` and `refresh` tokens
 - Support for custom dependencies and strategies
 
 ### Purpose:
-- Used as a basic module for all types of authentication
-- Ready for use in MVP, pet projects and production
+- Base module for all authentication types
+- Ready for MVPs, pet projects, and production use
 """
 
 version = "1.0.0"

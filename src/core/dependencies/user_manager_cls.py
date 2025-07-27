@@ -35,7 +35,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     ):
         "Called after a user is successfully registered."
 
-        log.info(f"User: {user.id} was registered")
+        log.warning(f"User: {user.id} was registered")
 
     async def on_after_request_verify(
         self,
@@ -45,7 +45,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     ):
         "Called after a user requests email verification."
 
-        log.info(f"Verification request from:\n\tUser: {user.id}\n\tToken: {token}")
+        log.warning(f"Verification request from:\n\tUser: {user.id}\n\tToken: {token}")
 
     async def on_after_forgot_password(
         self,
@@ -55,4 +55,4 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     ):
         "Called after a user initiates a password reset."
 
-        log.info(f"User {user.id} has forgot their password. Reset token: {token}")
+        log.warning(f"User {user.id} has forgot their password. Reset token: {token}")

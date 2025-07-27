@@ -5,7 +5,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.core.middleware import CustomHeaderMiddleware
-from .routers._0_main_router import main_router
+from .routers._0_main_router import (
+    main_router_db_bearer,
+    main_router_db_cookie,
+    main_router_jwt_bearer,
+    main_router_jwt_cookie,
+)
 from .description_app import title, description, version, contact
 
 # --
@@ -19,7 +24,10 @@ app = FastAPI(
 )
 
 # Routers
-app.include_router(main_router)
+# app.include_router(main_router_db_bearer)
+# app.include_router(main_router_db_cookie)
+# app.include_router(main_router_jwt_bearer)
+app.include_router(main_router_jwt_cookie)
 
 # Middlewares
 app.add_middleware(

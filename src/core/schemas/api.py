@@ -13,6 +13,12 @@ class ApiSchema(BaseModel):
 
     prefix: str = "/api"
     auth: str = "/auth"
+
+    auth_db_bearer: str = "/auth/db/bearer"
+    auth_db_cookie: str = "/auth/db/cookie"
+    auth_jwt_bearer: str = "/auth/jwt/bearer"
+    auth_jwt_cookie: str = "/auth/jwt/cookie"
+
     users: str = "/users"
 
     @property
@@ -22,4 +28,4 @@ class ApiSchema(BaseModel):
         Returns:
             str: Complete URL path to the login endpoint."""
 
-        return f"{self.prefix}{self.auth}/login"
+        return f"{self.prefix}{self.auth_jwt_cookie}/login"  # Choose your path

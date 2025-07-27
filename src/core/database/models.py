@@ -9,12 +9,14 @@ This module defines the ORM models required for authentication and user handling
 
 # -- Imports
 
+from datetime import datetime
 from fastapi_users.db import SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 from fastapi_users_db_sqlalchemy.access_token import (
     SQLAlchemyAccessTokenDatabase,
     SQLAlchemyBaseAccessTokenTable,
 )
+from fastapi_users_db_sqlalchemy.generics import TIMESTAMPAware
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import DeclarativeBase
@@ -47,6 +49,7 @@ class User(Base, IdIntPkMixin, SQLAlchemyBaseUserTable[int]):
         return SQLAlchemyUserDatabase(session, cls)
 
 
+# Add AccessToken model if you choose DB strategy
 class AccessToken(Base, SQLAlchemyBaseAccessTokenTable[int]):
     """Access token model linked to a user."""
 
@@ -54,7 +57,10 @@ class AccessToken(Base, SQLAlchemyBaseAccessTokenTable[int]):
 
     user_id: Mapped[int] = mapped_column(
         Integer,
-        ForeignKey("users.id", ondelete="cascade"),
+        ForeignKey(
+            "users.id",
+            ondelete="cascade",
+        ),
         nullable=False,
     )
 
@@ -63,3 +69,24 @@ class AccessToken(Base, SQLAlchemyBaseAccessTokenTable[int]):
         """Returns an instance of SQLAlchemyAccessTokenDatabase for working with the access token table."""
 
         return SQLAlchemyAccessTokenDatabase(session, cls)
+
+
+class RefreshToken(Base):
+    """Refresh tokens model"""
+
+    __tablename__ = "refresh_tokens"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    token: Mapped[str] = mapped_column(
+        unique=True,
+        nullable=False,
+    )
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey(
+            "users.id",
+            ondelete="cascade",
+        ),
+    )
+    expires_at: Mapped[datetime] = mapped_column(
+        TIMESTAMPAware(timezone=True), nullable=False
+    )
