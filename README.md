@@ -70,9 +70,13 @@ make superuser
 
 ### 6. Run the project
 
+- with uvicorn (development)
+
 ```bash
 make run
 ```
+
+- with gunicorn
 
 ```bash
 make urn
