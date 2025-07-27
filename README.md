@@ -26,6 +26,7 @@ Suitable for MVPs, pet projects, and production-ready systems with flexible stra
 
 ## Core Stack
 
+- `fastapi` — main framework
 - `fastapi-users` — user management framework
 - `sqlalchemy` — ORM for users and tokens
 - `alembic` — schema migrations
