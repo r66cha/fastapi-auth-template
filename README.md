@@ -73,13 +73,13 @@ make superuser
 - with uvicorn (development)
 
 ```bash
-make run
+make urun
 ```
 
 - with gunicorn
 
 ```bash
-make urn
+make run
 ```
 
 ### 7. Swagger docs available at:
