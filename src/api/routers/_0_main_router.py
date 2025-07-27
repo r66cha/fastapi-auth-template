@@ -13,6 +13,7 @@ from .auth_db_cookie import auth_db_cookie_router
 from .auth_jwt_bearer import auth_jwt_bearer_router
 from .auth_jwt_cookie import auth_jwt_cookie_router
 from .auth_refresh_jwt import refresh_router
+from .users_r import user_router_db, user_router_jwt
 
 # --
 
@@ -24,11 +25,13 @@ main_router_db_bearer = APIRouter(
 )
 
 main_router_db_bearer.include_router(auth_db_bearer_router)
+main_router_db_bearer.include_router(user_router_db)
 
 # --
 
 main_router_db_cookie = APIRouter(prefix=settings.api.prefix)
 main_router_db_cookie.include_router(auth_db_cookie_router)
+main_router_db_cookie.include_router(user_router_db)
 
 # --
 
@@ -38,9 +41,11 @@ main_router_jwt_bearer = APIRouter(
 )
 main_router_jwt_bearer.include_router(auth_jwt_bearer_router)
 main_router_jwt_bearer.include_router(refresh_router)
+main_router_jwt_bearer.include_router(user_router_jwt)
 
 # --
 
 main_router_jwt_cookie = APIRouter(prefix=settings.api.prefix)
 main_router_jwt_cookie.include_router(auth_jwt_cookie_router)
 main_router_jwt_cookie.include_router(refresh_router)
+main_router_jwt_cookie.include_router(user_router_jwt)

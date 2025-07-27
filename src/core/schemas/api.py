@@ -13,6 +13,7 @@ class ApiSchema(BaseModel):
 
     prefix: str = "/api"
     auth: str = "/auth"
+    user: str = "/user"
 
     auth_db_bearer: str = "/auth/db/bearer"
     auth_db_cookie: str = "/auth/db/cookie"
