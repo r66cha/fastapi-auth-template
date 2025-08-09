@@ -20,7 +20,6 @@ from fastapi_users_db_sqlalchemy.generics import TIMESTAMPAware
 from sqlalchemy import Integer, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.ext.asyncio import AsyncSession
 from typing import TYPE_CHECKING
 from src.core.database.mixin import IdIntPkMixin
 
